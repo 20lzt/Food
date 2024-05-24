@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- 引入 ECharts 文件 -->
+	<script src="./echarts.js"></script>
+
+</head>
+
+<body>
+	<!---为ECharts准备一个具备大小（宽高）的DOM--->
+	<div id="main" style="width: 700px; height: 600px"></div>
+	<script type="text/javascript">
+		//基于准备好的DOM，初始化ECharts图表
+		var myChart = echarts.init(document.getElementById("main"));
+		//指定图表的配置项和数据
+		function getLevelOption() {
+			return [
+				{
+					itemStyle: {
+						borderWidth: 0,
+						gapWidth: 5
+					}
+				},
+				{
+					itemStyle: {
+						gapWidth: 1
+					}
+				},
+				{
+					colorSaturation: [0.35, 0.5],
+					itemStyle: {
+						gapWidth: 1,
+						borderColorSaturation: 0.6
+					}
+				}
+			];
+		}
+		var option = {  //指定图表的配置项和数据
+			title: {  //配置标题组件
+				text: '矩形树图', top: 15,
+				textStyle: { color: 'green' }, left: 270
+			},
+			series: [{
+				name: '全部',
+				type: 'treemap',
+				levels: getLevelOption(),
+				data: [{
+					name: '王斌',  //First tree
+					value: 24,
+					children: [{
+						name: '黄著',  //First leaf of first tree
+						value: 2
+					}, {
+						name: '刘旺坚',  //Second leaf of first tree
+						value: 4
+					}, {
+						name: '李文科',  //Second leaf of first tree
+						value: 10
+					}, {
+						name: '蔡铭浪',  //Second leaf of first tree
+						value: 8
+					}]
+				}, {
+					name: '刘倩',  //First tree
+					value: 16,
+					children: [{
+						name: '胡斌彬',  //First leaf of first tree
+						value: 3
+					}, {
+						name: '廖舒婷',  //Second leaf of first tree
+						value: 7
+					}, {
+						name: '胥玉英',  //Second leaf of first tree
+						value: 6
+					}]
+				}, {
+					name: '袁波',  //First tree
+					value: 10,
+					children: [{
+						name: '刘俊权',  //First leaf of first tree
+						value: 4
+					}, {
+						name: '古旭高',  //Second leaf of first tree
+						value: 6
+					}]
+				}]
+			}]
+		};
+		//使用刚指定的配置项和数据显示图表
+		myChart.setOption(option); 
+	</script>
+</body>
+
+</html>
